@@ -117,18 +117,16 @@ prefix.
 
 ### Vercel
 
-`vercel.json` pins the build explicitly:
+Import the repo and keep the **Next.js** framework preset — that's all that's
+needed. Vercel natively detects `output: "export"`, runs `next build`, and
+serves the generated `out/` directory automatically, so `vercel.json` only
+carries routing preferences (`cleanUrls`, `trailingSlash`) and no build/output
+overrides. Overriding `outputDirectory` here is what previously fought Vercel's
+built-in export handling, so it has been removed.
 
-```json
-{ "buildCommand": "next build", "outputDirectory": "out" }
-```
-
-`outputDirectory` matters — with `output: "export"` the build lands in `out/`,
-not `.next/`, and a mismatch there is served as `404: NOT_FOUND`.
-
-**Do not set `BASE_PATH` on Vercel.** It exists only for the Pages sub-path;
-setting it would prefix every asset with `/getninjaportfolio` and break the
-site at the domain root.
+**Do not set a `BASE_PATH` environment variable on Vercel.** It exists only for
+the Pages sub-path; setting it would prefix every asset with the repo name and
+break the site at the domain root.
 
 ## Content accuracy
 
