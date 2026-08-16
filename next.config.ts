@@ -1,14 +1,12 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 /**
- * Static export configuration with explicit root tracing.
+ * Static export so the site can be served anywhere (Vercel, GitHub Pages, etc.)
  */
 const basePath = process.env.BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   output: "export",
-  outputFileTracingRoot: path.resolve(__dirname),
   basePath,
   assetPrefix: basePath || undefined,
   eslint: {
