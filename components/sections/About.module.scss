@@ -1,0 +1,213 @@
+@use "../../styles/tokens" as *;
+
+.section {
+  @include wrap;
+  padding-top: clamp(50px, 11vh, 130px);
+  padding-bottom: clamp(60px, 12vh, 150px);
+}
+
+.heading {
+  @include display(2.2rem, 7.2vw, 7.5rem);
+  text-transform: uppercase;
+  margin-left: -0.012em;
+}
+
+.introRow {
+  display: grid;
+  grid-template-columns: 41% 10% minmax(0, 34ch);
+  align-items: start;
+  margin-top: clamp(36px, 8vh, 100px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: clamp(24px, 4vh, 44px);
+  }
+}
+
+.label {
+  grid-column: 2;
+  @include micro;
+  color: var(--fg-muted);
+  white-space: nowrap;
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+}
+
+.copy {
+  grid-column: 3;
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+
+  p {
+    @include body-copy;
+    color: var(--fg-muted);
+
+    + p {
+      margin-top: 14px;
+    }
+  }
+}
+
+.block {
+  margin-top: clamp(44px, 9vh, 110px);
+}
+
+.blockLabel {
+  @include micro;
+  color: var(--fg-muted);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.job {
+  display: grid;
+  grid-template-columns: 41% minmax(0, 1fr);
+  gap: 12px clamp(16px, 2vw, 30px);
+  padding: clamp(20px, 3.4vh, 40px) 0;
+  border-bottom: 1px solid var(--line);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+.company {
+  @include display(20px, 3.2vw, 40px, 600);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.jobMid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.role {
+  font-family: var(--grotesk);
+  font-weight: 500;
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: var(--fg);
+}
+
+.period {
+  @include micro;
+  text-transform: none;
+  color: var(--fg-muted);
+}
+
+.jobDetails {
+  grid-column: 2;
+  list-style: none;
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+
+  li {
+    @include body-copy;
+    font-size: clamp(12px, 0.95vw, 13.5px);
+    color: var(--fg-muted);
+    max-width: 62ch;
+
+    + li {
+      margin-top: 10px;
+    }
+  }
+}
+
+.tags {
+  grid-column: 2;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 7px;
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+
+  li {
+    @include micro;
+    color: var(--fg-muted);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 5px 10px;
+  }
+}
+
+.threeUp {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3.5vw, 50px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.plainList {
+  list-style: none;
+  margin-top: 18px;
+
+  li {
+    @include body-copy;
+    color: var(--fg);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+.degreeTitle {
+  font-family: var(--grotesk);
+  font-weight: 500;
+  font-size: clamp(13px, 1.05vw, 14.5px);
+  color: var(--fg);
+  line-height: 1.35;
+}
+
+.school {
+  @include micro;
+  text-transform: none;
+  color: var(--fg-muted);
+  line-height: 1.4;
+}
+
+.eduMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.eduYear {
+  @include micro;
+  color: var(--fg-muted);
+}
+
+.gpaPill {
+  @include micro;
+  color: var(--fg);
+  background: rgba(20, 20, 15, 0.06);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.achieveDesc {
+  @include body-copy;
+  font-size: clamp(11.5px, 0.88vw, 13px);
+  color: var(--fg-muted);
+  line-height: 1.45;
+  margin-top: 4px;
+}

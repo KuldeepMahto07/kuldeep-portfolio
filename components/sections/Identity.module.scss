@@ -1,0 +1,91 @@
+@use "../../styles/tokens" as *;
+
+.section {
+  @include wrap;
+  padding-top: clamp(50px, 12vh, 150px);
+  padding-bottom: clamp(60px, 14vh, 170px);
+}
+
+.grid {
+  display: grid;
+  // Same 41/59 split the rest of the page uses.
+  grid-template-columns: 41% minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 60px);
+  // Must stretch so the sticky statement has travel. `end` bottom-aligned it
+  // against a very tall skills column, which left a huge void above it and
+  // clipped the last line at the viewport edge.
+  align-items: stretch;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+.statementCol {
+  position: relative;
+}
+
+// Anchored while the skills scroll past — the same language as the giant
+// project indices, rather than a block stranded at the bottom of the section.
+.statementSticky {
+  position: sticky;
+  top: 34vh;
+  display: block;
+
+  @include tablet-down {
+    position: static;
+  }
+}
+
+.statement {
+  @include display(2.2rem, 6.6vw, 7rem);
+  text-transform: uppercase;
+  margin-left: -0.012em;
+}
+
+.skills {
+  padding-bottom: 6px;
+}
+
+.skillsHeading {
+  @include display(24px, 3.2vw, 44px);
+  text-transform: none;
+  margin-bottom: clamp(20px, 3vh, 34px);
+}
+
+// Two columns: five groups across three columns left a ragged 3 + 2 with a
+// hole in it. 2 × (3 + 2) reads as an even editorial block.
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.6vw, 40px) clamp(18px, 2.4vw, 34px);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.column {
+  h4 {
+    font-family: var(--grotesk);
+    font-weight: 600;
+    font-size: clamp(12px, 1vw, 14px);
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    @include body-copy;
+    font-size: clamp(12px, 0.95vw, 13.5px);
+    color: var(--fg-muted);
+    padding: 3px 0;
+  }
+}

@@ -1,0 +1,68 @@
+// NOTE: this file must emit **no CSS**. It is `@use`d by every CSS Module, and
+// CSS Modules reject non-pure selectors like `:root`. The custom properties are
+// declared once in globals.scss instead.
+
+// Breakpoints.
+// NOTE: the reference frames are 1024px wide and represent the *desktop*
+// composition, so the tablet breakpoint must sit below 1024 — otherwise the
+// reference viewport itself collapses to the stacked tablet layout.
+$bp-mobile: 640px;
+$bp-tablet: 960px;
+
+@mixin mobile {
+  @media (max-width: #{$bp-mobile}) {
+    @content;
+  }
+}
+@mixin tablet-down {
+  @media (max-width: #{$bp-tablet}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$bp-tablet + 1px}) {
+    @content;
+  }
+}
+// Mouse-driven effects only where a real pointer exists
+@mixin fine-pointer {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+@mixin reduced {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Page gutter — frames show a very tight inline padding (~1.8vw).
+@mixin wrap {
+  width: 100%;
+  padding-inline: var(--pad);
+}
+
+// Oversized editorial grotesk. Frames: weight 500–600, very tight tracking.
+@mixin display($min, $vw, $max, $weight: 600) {
+  font-family: var(--grotesk);
+  font-weight: $weight;
+  font-size: clamp($min, $vw, $max);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+// Micro label, e.g. (SERVICES) / (PROJECTS) / AVAILABLE FOR WORK
+@mixin micro {
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.72vw, 11px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@mixin body-copy {
+  font-family: var(--grotesk);
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+}

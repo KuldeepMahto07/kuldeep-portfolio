@@ -1,0 +1,232 @@
+@use "../../styles/tokens" as *;
+
+.hero {
+  @include wrap;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(18px, 2vh, 28px);
+  padding-bottom: clamp(16px, 2.4vh, 30px);
+}
+
+// Tiny in-flow nav
+.nav {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: clamp(11px, 0.95vw, 13px);
+  letter-spacing: -0.01em;
+}
+
+.navLinks {
+  display: flex;
+  gap: clamp(10px, 1.2vw, 18px);
+
+  a {
+    color: var(--fg);
+    transition: opacity 0.25s var(--e-micro);
+
+    &:hover {
+      opacity: 0.55;
+    }
+  }
+}
+
+// The name: one line, spans viewport
+.nameWrap {
+  margin-top: clamp(18px, 4.4vh, 74px);
+}
+
+.name {
+  font-family: var(--grotesk);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 11.2vw, 12rem);
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  color: #14140f;
+  margin-left: -0.015em;
+}
+
+// Lower block
+.lower {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 0.8fr);
+  gap: clamp(16px, 2vw, 34px);
+  align-items: start;
+  margin-top: clamp(18px, 2.6vh, 34px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.arrow {
+  color: var(--muted);
+  margin-bottom: clamp(20px, 4vh, 48px);
+}
+
+.copy {
+  @include body-copy;
+  color: #14140f;
+  max-width: 32ch;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(18px, 3vh, 36px);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #33302a;
+  color: var(--light);
+  border-radius: 100px;
+  padding: 11px 18px;
+  font-family: var(--grotesk);
+  font-weight: 600;
+  font-size: clamp(11px, 0.85vw, 12.5px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  will-change: transform;
+  transition: background-color 0.35s var(--e-micro);
+
+  &:hover {
+    background: #14140f;
+  }
+
+  svg {
+    transition: transform 0.4s var(--e-swap);
+  }
+  &:hover svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: #14140f;
+  border: 1px solid rgba(20, 20, 15, 0.2);
+  border-radius: 100px;
+  padding: 10px 16px;
+  font-family: var(--grotesk);
+  font-weight: 600;
+  font-size: clamp(11px, 0.85vw, 12.5px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.3s var(--e-micro);
+
+  &:hover {
+    border-color: #14140f;
+    background: rgba(20, 20, 15, 0.05);
+  }
+}
+
+.ctaGhost {
+  display: inline-flex;
+  align-items: center;
+  color: #55534c;
+  font-family: var(--mono);
+  font-size: clamp(10px, 0.75vw, 11.5px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: #14140f;
+  }
+}
+
+// Centre portrait
+.portrait {
+  position: relative;
+  width: clamp(150px, 21vw, 260px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #d9d8d1;
+  justify-self: center;
+
+  @include tablet-down {
+    justify-self: start;
+  }
+}
+
+.portraitInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 14px;
+}
+
+.portraitNote {
+  @include micro;
+  color: #7e7c74;
+  line-height: 1.5;
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(1) contrast(1.02);
+  transition: filter 0.5s var(--e-micro), transform 0.6s var(--e-micro);
+
+  &:hover {
+    filter: grayscale(0) contrast(1.04);
+    transform: scale(1.03);
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  text-align: right;
+
+  @include tablet-down {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.availLabel {
+  @include micro;
+  color: var(--muted-dark);
+  margin-bottom: 4px;
+}
+
+.availDate {
+  font-family: var(--grotesk);
+  font-weight: 600;
+  font-size: clamp(30px, 4.9vw, 62px);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  color: #33302a;
+}

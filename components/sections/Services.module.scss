@@ -1,0 +1,151 @@
+@use "../../styles/tokens" as *;
+
+.section {
+  @include wrap;
+  // Frame 3/4: the sheet arrives well before its content starts.
+  padding-top: clamp(46px, 9vh, 110px);
+  padding-bottom: clamp(60px, 14vh, 180px);
+}
+
+// Huge, hard left, nothing beside it.
+.heading {
+  @include display(3rem, 8.6vw, 9rem);
+  text-transform: uppercase;
+  margin-left: -0.012em;
+}
+
+// Frame 3 geometry: label at ~43%, copy at ~52%, both a long way below the
+// heading. The horizontal AND vertical separation is intentional.
+.introRow {
+  display: grid;
+  grid-template-columns: 43% 9% minmax(0, 30ch);
+  align-items: start;
+  margin-top: clamp(50px, 13vh, 165px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: clamp(30px, 6vh, 60px);
+  }
+}
+
+.label {
+  grid-column: 2;
+  @include micro;
+  color: var(--fg-muted);
+  white-space: nowrap;
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+}
+
+.intro {
+  grid-column: 3;
+  @include body-copy;
+  color: var(--fg-muted);
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+}
+
+// ---- Stacking rows ----
+.rows {
+  --rowH: clamp(50px, 6.4vh, 74px);
+  margin-top: clamp(50px, 12vh, 150px);
+}
+
+.row {
+  // Opaque background is what lets a row cover the previous row's body.
+  background: var(--bg);
+  position: sticky;
+  top: calc(var(--i) * var(--rowH));
+  padding-bottom: clamp(40px, 9vh, 110px);
+
+  // Thin divider above each row, full bleed.
+  border-top: 1px solid var(--line);
+}
+
+.rowHead {
+  display: grid;
+  grid-template-columns: 42% minmax(0, 1fr);
+  align-items: baseline;
+  height: var(--rowH);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding-top: 12px;
+    gap: 2px;
+  }
+}
+
+.num {
+  font-family: var(--grotesk);
+  font-weight: 400;
+  font-size: clamp(22px, 3.6vw, 42px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--fg);
+}
+
+.title {
+  @include display(20px, 3.4vw, 40px, 600);
+  line-height: 1;
+}
+
+// Body sits in the right column only, under the title.
+.rowBody {
+  display: grid;
+  grid-template-columns: 42% minmax(0, 1fr);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.desc {
+  grid-column: 2;
+  @include body-copy;
+  font-size: clamp(12px, 0.95vw, 13.5px);
+  color: var(--fg-muted);
+  max-width: 34ch;
+  margin: clamp(16px, 2.6vh, 34px) 0 clamp(14px, 2.4vh, 30px);
+
+  @include mobile {
+    grid-column: 1;
+  }
+}
+
+.tech {
+  grid-column: 2;
+  list-style: none;
+
+  @include mobile {
+    grid-column: 1;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 6px;
+    padding: clamp(9px, 1.5vh, 15px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.techNum {
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.72vw, 11px);
+  color: var(--fg-muted);
+}
+
+.techLabel {
+  font-family: var(--grotesk);
+  font-weight: 500;
+  font-size: clamp(14px, 1.5vw, 19px);
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}

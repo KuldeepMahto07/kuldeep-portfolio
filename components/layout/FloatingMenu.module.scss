@@ -1,0 +1,84 @@
+@use "../../styles/tokens" as *;
+
+// Off-white circle with two dark lines, fixed on the right. Appears once the
+// dark canvas is under it (the frames only ever show it over dark sections).
+.button {
+  position: fixed;
+  right: 3vw;
+  top: 40vh;
+  z-index: 160;
+  width: clamp(38px, 3.4vw, 46px);
+  height: clamp(38px, 3.4vw, 46px);
+  border-radius: 50%;
+  background: #e4e2da;
+  color: #14140f;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85);
+  transition:
+    opacity 0.45s var(--e-micro),
+    transform 0.45s var(--e-swap);
+
+  span {
+    display: block;
+    width: 42%;
+    height: 1.4px;
+    background: currentColor;
+    transition: transform 0.4s var(--e-swap);
+  }
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.open {
+  background: var(--light);
+
+  span:first-child {
+    transform: translateY(2.7px) rotate(45deg);
+  }
+  span:last-child {
+    transform: translateY(-2.7px) rotate(-45deg);
+  }
+}
+
+// ---- Minimal fullscreen menu ----
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 155;
+  background: var(--dark);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: var(--pad);
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition:
+    transform 0.8s var(--e-swap),
+    visibility 0.8s;
+}
+
+.overlayOpen {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.item {
+  @include display(2rem, 7.6vw, 8rem);
+  text-transform: uppercase;
+  padding: clamp(2px, 0.6vh, 8px) 0;
+  color: var(--muted);
+  transition: color 0.35s var(--e-micro);
+
+  &:hover {
+    color: var(--text-light);
+  }
+}

@@ -1,0 +1,201 @@
+@use "./tokens" as *;
+
+// Design tokens as custom properties. Declared here only — `_tokens.scss` is
+// shared with CSS Modules and must not emit any CSS.
+:root {
+  // Palette taken from the frames: warm off-white and a near-black that is
+  // very slightly green, not pure #000.
+  --light: #f0f0eb;
+  --dark: #080a07;
+  --text-light: #e8e8e2;
+  --muted: #a8a7a1;
+  --muted-dark: #6f6e69;
+
+  --bg: var(--light);
+  --fg: #14140f;
+  --fg-muted: #6f6e69;
+  --line: rgba(20, 20, 15, 0.16);
+
+  --grotesk: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: var(--font-mono), "SFMono-Regular", Menlo, monospace;
+
+  // Frames show a very tight page gutter.
+  --pad: clamp(16px, 1.8vw, 26px);
+
+  --radius-sheet: 28px;
+
+  // Motion vocabulary [extracted from the reference bundle]
+  --e-micro: cubic-bezier(0.4, 0, 0.2, 1);
+  --e-swap: cubic-bezier(0.77, 0, 0.175, 1);
+  --e-reveal: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// ============================================================
+// SECTION SHEETS
+// A new sheet rises from below and covers the previous one, which stays pinned
+// behind it. Pure CSS: `position: sticky` on the outgoing sheet plus ascending
+// z-index on the incoming one. Nothing here is ScrollTrigger-driven, so the
+// overlap is exactly reversible and cannot desync from Lenis.
+//
+// Sheets must never set `overflow: hidden`/`clip` — that would re-root any
+// `position: sticky` descendant (service rows, project indices) to the sheet
+// instead of the viewport and silently kill them. `border-radius` alone clips
+// the sheet background, which is all the rounded corners need.
+// ============================================================
+.sheet {
+  position: relative;
+  z-index: var(--sheet-z, 1);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.sheet--pinned {
+  position: sticky;
+  top: 0;
+}
+
+.sheet--rise {
+  border-top-left-radius: var(--radius-sheet);
+  border-top-right-radius: var(--radius-sheet);
+}
+
+.tone-light {
+  --bg: var(--light);
+  --fg: #14140f;
+  --fg-muted: #6f6e69;
+  --line: rgba(20, 20, 15, 0.16);
+}
+
+.tone-dark {
+  --bg: var(--dark);
+  --fg: var(--text-light);
+  --fg-muted: var(--muted);
+  --line: rgba(232, 232, 226, 0.16);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto; // Lenis owns scrolling
+  background: var(--dark); // behind the sheets, never seen as a flash
+}
+
+body {
+  background: var(--light);
+  color: #14140f;
+  font-family: var(--grotesk);
+  font-weight: 400;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+::selection {
+  background: #14140f;
+  color: var(--light);
+}
+
+// ---- Lenis ----
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html.has-custom-cursor {
+  @include fine-pointer {
+    &,
+    & * {
+      cursor: none !important;
+    }
+  }
+}
+
+// ---- Masked line reveal primitive ----
+.lineMask {
+  display: block;
+  overflow: hidden;
+  // Room for descenders so 'g'/'y' aren't shaved by overflow:hidden
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.lineInner {
+  display: inline-block;
+  will-change: transform;
+}
+
+// Pre-animation hidden states, driven by RevealEngine (Pass 5).
+//
+// Scoped under `html.motion`, which MotionFlag adds before first paint and only
+// when the user has not asked for reduced motion. So:
+//   JS disabled     -> class never added -> content visible
+//   reduced motion  -> class never added -> content visible
+//   normal          -> hidden pre-paint, then revealed (no flash)
+html.motion {
+  .lineInner {
+    transform: translateY(110%);
+  }
+  [data-fade] {
+    opacity: 0;
+  }
+  [data-clip] {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@include reduced {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .lineInner,
+  [data-fade],
+  [data-clip] {
+    transform: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
+}

@@ -1,0 +1,23 @@
+.split {
+  display: block;
+}
+
+.mask {
+  display: inline-block;
+  vertical-align: top;
+}
+
+// Lines stack; each is its own full-width mask.
+.lines .mask {
+  display: block;
+}
+
+.words .mask,
+.chars .mask {
+  display: inline-block;
+}
+
+// Characters must not break mid-word.
+.chars {
+  word-break: keep-all;
+}

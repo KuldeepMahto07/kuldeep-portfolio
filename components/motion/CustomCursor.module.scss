@@ -1,0 +1,50 @@
+@use "../../styles/tokens" as *;
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--light);
+  pointer-events: none;
+  opacity: 0;
+  // Difference blending lets the bare dot read on both the light and the
+  // near-black sheets without any JS colour swapping.
+  mix-blend-mode: difference;
+  will-change: transform, width, height;
+  display: none;
+
+  @include fine-pointer {
+    display: block;
+  }
+
+  @include reduced {
+    display: none !important;
+  }
+}
+
+// Blending is right for the dot but ruins text contrast: on light the disc
+// inverts to near-black and a blended label on top comes out muddy. So the
+// labelled state opts out of blending and uses explicit colours.
+.labelled {
+  mix-blend-mode: normal;
+  background: #14140f;
+}
+
+.label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include micro;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--light);
+  opacity: 0;
+  white-space: nowrap;
+}

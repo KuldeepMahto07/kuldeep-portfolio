@@ -1,0 +1,52 @@
+@use "../../styles/tokens" as *;
+
+.section {
+  @include wrap;
+  padding-top: clamp(50px, 14vh, 170px);
+  padding-bottom: clamp(40px, 8vh, 100px);
+}
+
+.heading {
+  @include display(2.6rem, 8.6vw, 9rem);
+  text-transform: uppercase;
+  margin-left: -0.012em;
+}
+
+// Same offset geometry as the services intro: label ~43%, copy ~52%.
+.introRow {
+  display: grid;
+  grid-template-columns: 41% 10% minmax(0, 26ch);
+  align-items: start;
+  margin-top: clamp(30px, 6vh, 74px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: clamp(24px, 4vh, 44px);
+  }
+}
+
+.label {
+  grid-column: 2;
+  @include micro;
+  color: var(--fg-muted);
+  white-space: nowrap;
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+}
+
+.intro {
+  grid-column: 3;
+  @include body-copy;
+  color: var(--fg-muted);
+
+  @include tablet-down {
+    grid-column: 1;
+  }
+}
+
+.states {
+  margin-top: clamp(30px, 6vh, 70px);
+}

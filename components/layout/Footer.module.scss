@@ -1,0 +1,119 @@
+@use "../../styles/tokens" as *;
+
+// Light footer, physically underneath the dark contact sheet. Spacious.
+.footer {
+  @include wrap;
+  padding-top: clamp(60px, 14vh, 160px);
+  padding-bottom: clamp(30px, 5vh, 60px);
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 41% minmax(0, 1fr);
+  gap: clamp(26px, 4vw, 60px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.colLabel {
+  @include micro;
+  color: var(--fg-muted);
+  width: 100%;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.link {
+  @include body-copy;
+  color: var(--fg-muted);
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s var(--e-micro);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--e-swap);
+  }
+
+  &:hover {
+    color: var(--fg);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+// ---- Bottom: local time left, back-to-top right ----
+.bottom {
+  margin-top: auto;
+  padding-top: clamp(50px, 12vh, 130px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 20px;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.timeLabel {
+  @include micro;
+  color: var(--fg-muted);
+}
+
+.time {
+  font-family: var(--mono);
+  font-size: clamp(12px, 1vw, 14px);
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.place {
+  @include micro;
+  color: var(--fg-muted);
+}
+
+// Large circular back-to-top, as in the reference footer.
+.top {
+  width: clamp(52px, 5.4vw, 74px);
+  height: clamp(52px, 5.4vw, 74px);
+  border-radius: 50%;
+  background: #dedcd4;
+  color: #14140f;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+  transition:
+    background-color 0.35s var(--e-micro),
+    transform 0.45s var(--e-swap);
+
+  &:hover {
+    background: #14140f;
+    color: var(--light);
+    transform: translateY(-3px);
+  }
+}
