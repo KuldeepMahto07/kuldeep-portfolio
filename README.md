@@ -117,12 +117,19 @@ prefix.
 
 ### Vercel
 
-Import the repo and keep the **Next.js** framework preset — that's all that's
-needed. Vercel natively detects `output: "export"`, runs `next build`, and
-serves the generated `out/` directory automatically, so `vercel.json` only
-carries routing preferences (`cleanUrls`, `trailingSlash`) and no build/output
-overrides. Overriding `outputDirectory` here is what previously fought Vercel's
-built-in export handling, so it has been removed.
+Because this is a static export, `vercel.json` deploys it as a **plain static
+site** rather than through Vercel's Next.js serverless builder:
+
+```json
+{ "framework": null, "buildCommand": "next build", "outputDirectory": "out" }
+```
+
+`framework: null` is the important part. With the Next.js preset, Vercel's
+builder expects a serverless `.next` output and fails after the build, since
+`output: "export"` only produces the static `out/` directory. Setting the
+framework to `null` makes Vercel run the build and serve `out/` as static files
+directly. In the project's dashboard, set **Framework Preset → Other** so it
+matches this config.
 
 **Do not set a `BASE_PATH` environment variable on Vercel.** It exists only for
 the Pages sub-path; setting it would prefix every asset with the repo name and
