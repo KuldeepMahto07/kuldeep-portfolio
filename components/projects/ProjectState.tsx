@@ -147,26 +147,52 @@ export default function ProjectState({ project }: { project: Project }) {
             ))}
           </ul>
           {project.assetNote ? <p className={styles.assetNote}>{project.assetNote}</p> : null}
-          <a
-            className={styles.view}
-            href={project.href}
-            target="_blank"
-            rel="noopener"
-            data-cursor="link"
-          >
-            <ScrambledText text={project.linkLabel} />
-            <span className={styles.arrow} aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M4 12L12 4M12 4H5.5M12 4V10.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-          </a>
+          <div className={styles.actions}>
+            <a
+              className={styles.view}
+              href={project.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={`${project.title} — ${project.linkLabel} (opens in a new tab)`}
+              data-cursor="link"
+            >
+              <ScrambledText text={project.linkLabel} />
+              <span className={styles.arrow} aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M4 12L12 4M12 4H5.5M12 4V10.5"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </a>
+            {project.github ? (
+              <a
+                className={styles.view}
+                href={project.github}
+                target="_blank"
+                rel="noopener"
+                aria-label={`${project.title} — GitHub repository (opens in a new tab)`}
+                data-cursor="link"
+              >
+                <ScrambledText text="GitHub" />
+                <span className={styles.arrow} aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M4 12L12 4M12 4H5.5M12 4V10.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </a>
+            ) : null}
+          </div>
         </div>
       </div>
     </article>

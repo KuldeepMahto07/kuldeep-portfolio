@@ -224,11 +224,18 @@
   line-height: 1.5;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 32px);
+  margin-top: clamp(16px, 2.4vh, 26px);
+}
+
 .view {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  margin-top: clamp(16px, 2.4vh, 26px);
   @include micro;
   color: var(--fg);
   padding-bottom: 6px;

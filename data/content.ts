@@ -116,6 +116,8 @@ export type Project = {
   discipline: string;
   href: string;
   linkLabel: string;
+  /** Optional secondary link — renders a "GitHub" action alongside the primary one. */
+  github?: string;
   description: string;
   stack: string[];
   image: string;
@@ -158,6 +160,38 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    title: "Reelio",
+    category: "AI Video & Meeting Intelligence",
+    year: "2025",
+    discipline: "AI / RAG · Full Stack",
+    href: "https://reelio-khaki.vercel.app/",
+    linkLabel: "Live Demo",
+    github: "https://github.com/KuldeepMahto07/reelio",
+    description:
+      "AI-powered video and meeting intelligence platform that turns videos, meetings, podcasts, and uploaded media into searchable knowledge bases with grounded RAG answers and timestamped citations.",
+    stack: [
+      "FastAPI",
+      "React",
+      "PostgreSQL + pgvector",
+      "RAG",
+      "Mistral AI",
+      "Redis + Celery",
+      "LangChain",
+      "Docker",
+    ],
+    image: "/assets/reelio-mark.svg",
+    imageAlt: "Reelio — AI video & meeting intelligence platform",
+    fit: "contain",
+    assetNote: "No public screenshot bundled — open the live demo to explore.",
+    highlights: [
+      "RAG conversational AI over videos, meetings & podcasts with timestamped citations",
+      "Hybrid vector + keyword search on PostgreSQL/pgvector with semantic chunking",
+      "Speech-to-text via Groq Whisper (English) and Sarvam AI (Hindi/Hinglish)",
+      "Real-time streaming over SSE, with background processing on Celery + Redis",
+    ],
+  },
+  {
+    index: "03",
     title: "SanFi",
     category: "Solana-Powered Payment Gateway",
     year: "2025",
@@ -183,6 +217,38 @@ export const projects: Project[] = [
       "Instant fiat payouts to merchants through integrated PayPal SDK",
       "Phantom Wallet integration with one-click checkout for fast Web3 payments",
       "Full-stack architecture built with React.js and Django",
+    ],
+  },
+  {
+    index: "04",
+    title: "Keyzen",
+    category: "Typing Test PWA",
+    year: "2025",
+    discipline: "Frontend · PWA",
+    href: "https://keyzen-psi.vercel.app/",
+    linkLabel: "Live Demo",
+    github: "https://github.com/KuldeepMahto07/Keyzen",
+    description:
+      "Offline-capable typing test with mechanical keyboard sounds, real-time WPM analytics, virtual keyboard visualization, personal best tracking, and PWA support.",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Web Audio API",
+      "Recharts",
+      "Serwist (PWA)",
+      "Drizzle ORM",
+    ],
+    image: "/assets/keyzen-mark.svg",
+    imageAlt: "Keyzen — offline-capable typing test PWA",
+    fit: "contain",
+    assetNote: "No public screenshot bundled — open the live demo to try it.",
+    highlights: [
+      "Time, word-count, quote & zen modes with punctuation and number modifiers",
+      "Mechanical keyboard sounds via the Web Audio API and a virtual 78-key keyboard",
+      "Live WPM, accuracy, consistency and WPM-over-time charts with personal bests",
+      "Installable, offline-first PWA with JSON/CSV export and persistent settings",
     ],
   },
 ];
