@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger, useGsapContext } from "@/hooks/useGsap";
 
 /**
@@ -26,6 +27,12 @@ import { gsap, ScrollTrigger, useGsapContext } from "@/hooks/useGsap";
  */
 export default function RevealEngine() {
   const ref = useRef<HTMLDivElement>(null);
+  // Re-wire reveals whenever the route changes. Without this the engine runs
+  // once for the first page only; navigating back to "/" (client-side) remounts
+  // the homepage with its `html.motion` hidden states but nothing re-reveals
+  // them, leaving the hero blank. Re-running reverts the old context and plays
+  // the entrance again for the freshly mounted content.
+  const pathname = usePathname();
 
   useGsapContext(() => {
     const inHero = (el: Element) => Boolean(el.closest("#top"));
@@ -108,7 +115,7 @@ export default function RevealEngine() {
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
-  }, ref);
+  }, ref, [pathname]);
 
   // Nothing rendered — this only wires behaviour to existing markup.
   return <div ref={ref} aria-hidden="true" hidden />;

@@ -88,7 +88,9 @@ html {
 }
 
 body {
-  background: var(--light);
+  // Near-black base so route swaps and overscroll never expose a white frame.
+  // Section sheets paint their own tone (incl. the light hero) on top of this.
+  background: var(--dark);
   color: #14140f;
   font-family: var(--grotesk);
   font-weight: 400;
