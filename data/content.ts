@@ -10,19 +10,19 @@ export const profile = {
   name: "Kuldeep Mahto",
   /** Tiny nav label, top-left of the hero. */
   navLabel: "Full Stack Developer",
-  role: "Full Stack Developer",
-  location: "Greater Noida, India",
+  role: "Full Stack Developer | AI Engineer",
+  location: "Greater Noida, Uttar Pradesh, India",
   email: "kuldeep1702k@gmail.com",
   phone: "+91 8340483827",
   github: "https://github.com/KuldeepMahto07",
   githubHandle: "KuldeepMahto07",
   linkedin: "https://www.linkedin.com/in/kuldeep07",
   linkedinName: "Kuldeep Mahto",
-  portfolio: "https://getninjaportfolio.vercel.app/",
+  portfolio: "https://kuldeep-portfolio-yltc.vercel.app/",
   tagline:
     "Building scalable web applications, AI-powered products, and blockchain solutions.",
-  availability: "Available for work",
-  availableFrom: "JUL '25",
+  availability: "Availability",
+  availabilityStatus: "Open to opportunities",
   /**
    * Hero portrait asset path.
    */
@@ -219,20 +219,17 @@ export const skillGroups = [
     label: "Databases",
     items: [
       "PostgreSQL",
-      "Neon PostgreSQL",
       "MongoDB",
       "GraphQL",
-      "Drizzle ORM",
     ],
   },
   {
-    label: "AI & Voice",
+    label: "AI",
     items: [
       "Gemini 2.5",
       "OpenAI",
       "Vapi.ai",
       "AssemblyAI",
-      "AI Integration",
     ],
   },
   {
@@ -240,12 +237,12 @@ export const skillGroups = [
     items: [
       "Solana",
       "Phantom Wallet",
-      "Crypto Payments",
       "PayPal SDK",
+      "Crypto-to-Fiat Payments",
     ],
   },
   {
-    label: "Tools & Cloud",
+    label: "Tools / Cloud",
     items: [
       "Git",
       "Docker",

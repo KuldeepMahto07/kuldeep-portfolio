@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://getninjaportfolio.vercel.app/sitemap.xml
+Sitemap: https://kuldeep-portfolio-yltc.vercel.app/sitemap.xml

@@ -23,9 +23,10 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteTitle = `${profile.name} | Full Stack Developer`;
+const siteUrl = "https://kuldeep-portfolio-yltc.vercel.app";
+const siteTitle = `${profile.name} | Full Stack Developer & AI Engineer`;
 const siteDescription =
-  "Full Stack Developer building AI-powered applications, scalable web experiences, and blockchain solutions using React, Next.js, Node.js, Python, and modern technologies.";
+  "Full Stack Developer and AI Engineer building scalable web applications, AI-powered products, and blockchain solutions using React, Next.js, Node.js, Python, Django, PostgreSQL, and modern technologies.";
 
 export const metadata: Metadata = {
   title: siteTitle,
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     "Web3 Developer",
     "Portfolio",
   ],
-  metadataBase: new URL("https://getninjaportfolio.vercel.app"),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
   },
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     siteName: siteTitle,
     locale: "en_US",
-    url: "https://getninjaportfolio.vercel.app",
+    url: siteUrl,
     images: [
       {
         url: "/assets/deblo-hero.jpg",
@@ -87,13 +88,14 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: "Full Stack Developer",
-  url: "https://getninjaportfolio.vercel.app",
+  jobTitle: "Full Stack Developer & AI Engineer",
+  url: siteUrl,
   email: profile.email,
   telephone: profile.phone,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Greater Noida",
+    addressRegion: "Uttar Pradesh",
     addressCountry: "India",
   },
   alumniOf: {

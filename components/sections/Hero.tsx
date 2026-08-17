@@ -33,6 +33,9 @@ export default function Hero() {
             {profile.name.toUpperCase()}
           </h1>
         </span>
+        <p className={styles.role} data-fade>
+          {profile.role}
+        </p>
       </div>
 
       <div className={styles.lower}>
@@ -88,6 +91,7 @@ export default function Hero() {
               href={asset(profile.resume)}
               target="_blank"
               rel="noopener"
+              download
               data-cursor="link"
             >
               Resume
@@ -120,8 +124,9 @@ export default function Hero() {
           <span className={styles.availLabel}>
             <ScrambledText text={profile.availability} />
           </span>
-          <span className={styles.availDate} data-fade>
-            {profile.availableFrom}
+          <span className={styles.availStatus} data-fade>
+            <span className={styles.availDot} aria-hidden="true" />
+            {profile.availabilityStatus}
           </span>
         </div>
       </div>

@@ -49,6 +49,17 @@
   margin-left: -0.015em;
 }
 
+// Role / positioning line, directly beneath the name
+.role {
+  margin-top: clamp(12px, 1.8vh, 22px);
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: clamp(12px, 1.35vw, 18px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #55534c;
+}
+
 // Lower block
 .lower {
   flex: 1;
@@ -219,14 +230,26 @@
 .availLabel {
   @include micro;
   color: var(--muted-dark);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
-.availDate {
+.availStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--grotesk);
   font-weight: 600;
-  font-size: clamp(30px, 4.9vw, 62px);
-  line-height: 0.82;
-  letter-spacing: -0.05em;
+  font-size: clamp(16px, 1.9vw, 24px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: #33302a;
+}
+
+.availDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #1f9d55;
+  box-shadow: 0 0 0 4px rgba(31, 157, 85, 0.16);
+  flex-shrink: 0;
 }
