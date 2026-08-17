@@ -134,7 +134,7 @@ export const projects: Project[] = [
     category: "AI Healthcare Assistant",
     year: "2025",
     discipline: "Full Stack / AI",
-    href: "https://deblo.com",
+    href: "https://deblo.vercel.app/",
     linkLabel: "Live Demo",
     description:
       "Built a full-stack AI healthcare assistant with PostgreSQL and Drizzle ORM, enabling voice/text consultations, medical report generation, doctor recommendations, and feature enhancements based on feedback from 50+ users.",
@@ -196,8 +196,9 @@ export const projects: Project[] = [
     category: "Solana-Powered Payment Gateway",
     year: "2025",
     discipline: "Blockchain & Web3",
-    href: "https://github.com/KuldeepMahto07",
-    linkLabel: "View on GitHub",
+    href: "https://san-fi-3ioo.vercel.app/",
+    linkLabel: "Live Demo",
+    github: "https://github.com/KuldeepMahto07",
     description:
       "Built a decentralized payment gateway enabling Solana payments while merchants received instant fiat payouts through PayPal SDK. Developed full-stack application using React.js and Django with Phantom Wallet integration.",
     stack: [
@@ -211,7 +212,7 @@ export const projects: Project[] = [
     image: "/assets/sanfi-mark.svg",
     imageAlt: "SanFi wordmark — Solana-powered payment gateway",
     fit: "contain",
-    assetNote: "No public screenshot available — explore the source on GitHub.",
+    assetNote: "No public screenshot bundled — open the live demo to explore.",
     highlights: [
       "Decentralized payment gateway enabling fast Solana blockchain transactions",
       "Instant fiat payouts to merchants through integrated PayPal SDK",

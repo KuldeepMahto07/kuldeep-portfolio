@@ -82,7 +82,7 @@ export default function ProjectState({ project }: { project: Project }) {
           className={styles.mediaLink}
           href={project.href}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           aria-label={`${project.title} — ${project.linkLabel} (opens in a new tab)`}
           data-cursor="project"
         >
@@ -152,7 +152,7 @@ export default function ProjectState({ project }: { project: Project }) {
               className={styles.view}
               href={project.href}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               aria-label={`${project.title} — ${project.linkLabel} (opens in a new tab)`}
               data-cursor="link"
             >
@@ -174,7 +174,7 @@ export default function ProjectState({ project }: { project: Project }) {
                 className={styles.view}
                 href={project.github}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 aria-label={`${project.title} — GitHub repository (opens in a new tab)`}
                 data-cursor="link"
               >
