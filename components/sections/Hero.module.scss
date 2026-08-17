@@ -64,7 +64,8 @@
 .lower {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 0.8fr);
+  // Symmetric side columns keep the centre portrait on the true visual axis.
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: clamp(16px, 2vw, 34px);
   align-items: start;
   margin-top: clamp(18px, 2.6vh, 34px);
@@ -170,14 +171,17 @@
 // Centre portrait
 .portrait {
   position: relative;
-  width: clamp(150px, 21vw, 260px);
+  // ~17% larger than before (was clamp(150px, 21vw, 260px)).
+  width: clamp(176px, 24.5vw, 305px);
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #d9d8d1;
   justify-self: center;
+  align-self: center;
 
   @include tablet-down {
-    justify-self: start;
+    justify-self: center;
+    align-self: auto;
   }
 }
 
