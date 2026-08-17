@@ -1,0 +1,60 @@
+@use "../../styles/tokens" as *;
+
+.nav {
+  position: fixed;
+  top: 40vh;
+  right: 3vw;
+  z-index: 160;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.label {
+  @include micro;
+  white-space: nowrap;
+  transition: color 0.3s var(--e-micro);
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.circle {
+  width: clamp(42px, 3.6vw, 50px);
+  height: clamp(42px, 3.6vw, 50px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition:
+    background-color 0.35s var(--e-micro),
+    color 0.35s var(--e-micro),
+    transform 0.4s var(--e-swap);
+}
+
+.nav:hover .circle {
+  transform: scale(1.07);
+}
+
+// Dark surface behind → off-white circle with a dark glyph.
+.onDark {
+  .label {
+    color: var(--text-light);
+  }
+  .circle {
+    background: #e4e2da;
+    color: #14140f;
+  }
+}
+
+// Light surface behind → dark circle with a light glyph.
+.onLight {
+  .label {
+    color: #14140f;
+  }
+  .circle {
+    background: #14140f;
+    color: #f0f0eb;
+  }
+}

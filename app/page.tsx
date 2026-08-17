@@ -5,7 +5,7 @@ import Identity from "@/components/sections/Identity";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
-import FloatingMenu from "@/components/layout/FloatingMenu";
+import CircleNav from "@/components/layout/CircleNav";
 import SectionSheet from "@/components/motion/SectionSheet";
 import SectionTransition from "@/components/motion/SectionTransition";
 
@@ -54,7 +54,8 @@ export default function Home() {
         <Footer />
       </SectionSheet>
 
-      <FloatingMenu />
+      {/* Circular top-right control → the separate designs page (no overlay). */}
+      <CircleNav href="/designs" label="View other designs" text="Other Work" toneAware />
     </>
   );
 }

@@ -1,0 +1,113 @@
+@use "../../styles/tokens" as *;
+
+.card {
+  break-inside: avoid;
+  margin-bottom: clamp(18px, 2vw, 30px);
+  display: block;
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(232, 232, 226, 0.04);
+  border: 1px solid rgba(232, 232, 226, 0.1);
+}
+
+.imageWrap {
+  display: block;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  will-change: transform;
+  transition: transform 0.7s var(--e-swap);
+}
+
+// Clean placeholder shown until a real image is supplied.
+.placeholder {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(120% 120% at 30% 20%, rgba(232, 232, 226, 0.09), transparent 62%),
+    repeating-linear-gradient(135deg, rgba(232, 232, 226, 0.035) 0 10px, transparent 10px 20px);
+}
+
+.placeholderLabel {
+  @include micro;
+  color: rgba(232, 232, 226, 0.42);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: clamp(14px, 1.6vw, 22px);
+  background: linear-gradient(to top, rgba(8, 10, 7, 0.78), rgba(8, 10, 7, 0) 62%);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s var(--e-micro),
+    transform 0.5s var(--e-swap);
+  pointer-events: none;
+}
+
+.overlayCat {
+  @include micro;
+  color: var(--muted);
+}
+
+.overlayTitle {
+  font-family: var(--grotesk);
+  font-weight: 600;
+  font-size: clamp(16px, 1.4vw, 20px);
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+}
+
+.overlayDesc {
+  @include body-copy;
+  font-size: clamp(11px, 0.9vw, 13px);
+  color: rgba(232, 232, 226, 0.72);
+  max-width: 40ch;
+}
+
+// Hover flourishes only where a real pointer exists; caption below covers touch.
+@include fine-pointer {
+  .card:hover .image {
+    transform: scale(1.05);
+  }
+  .card:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.caption {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.title {
+  font-family: var(--grotesk);
+  font-weight: 500;
+  font-size: clamp(15px, 1.2vw, 18px);
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+}
+
+.meta {
+  @include micro;
+  color: var(--muted);
+}

@@ -1,0 +1,24 @@
+@use "../../styles/tokens" as *;
+
+// Editorial masonry via CSS columns. Cards avoid breaking across columns.
+.grid {
+  column-count: 3;
+  column-gap: clamp(18px, 2vw, 30px);
+
+  @media (max-width: 960px) {
+    column-count: 2;
+  }
+
+  @media (max-width: 640px) {
+    column-count: 1;
+  }
+
+  @media (min-width: 1600px) {
+    column-count: 4;
+  }
+}
+
+.empty {
+  @include body-copy;
+  color: var(--muted);
+}
