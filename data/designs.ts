@@ -84,18 +84,6 @@ export const designs: Design[] = [
     tech: ["Next.js", "GSAP", "SCSS", "TypeScript"],
   },
 
-  // ── Add more real projects here ──
-  // Drop a screenshot in `public/other-work/` and copy an entry above,
-  // setting `image`, `href`, `github` and `tech`.
-  //
-  // The empty placeholder cards that used to sit here are kept below (commented
-  // out) so the gallery reads as a curated set of real projects rather than a
-  // template. Uncomment any you want to show as an empty slot:
-  //
-  // { title: "Design 01", category: "UI/UX", year: "2025", image: "" },
-  // { title: "Design 02", category: "Web Design", year: "2025", image: "" },
-  // { title: "Design 03", category: "Social Media", year: "2025", image: "" },
-  // { title: "Design 04", category: "Creative", year: "2025", image: "" },
-  // { title: "Design 05", category: "Experiments", year: "2025", image: "" },
-  // { title: "Design 06", category: "Other Projects", year: "2025", image: "" },
+  // Add more real projects here: drop a screenshot in `public/other-work/`
+  // and copy an entry above, setting `image`, `href`, `github` and `tech`.
 ];
