@@ -55,7 +55,7 @@ export default function Home() {
       </SectionSheet>
 
       {/* Circular top-right control → the separate designs page (no overlay). */}
-      <CircleNav href="/designs" label="View other designs" text="Other Work" toneAware />
+      <CircleNav href="/designs" label="View Other Work" text="Other Work" toneAware />
     </>
   );
 }

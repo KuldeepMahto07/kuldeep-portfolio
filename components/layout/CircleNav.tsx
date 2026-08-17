@@ -88,7 +88,7 @@ export default function CircleNav({
 
       {variant === "forward" && (
         <span className={styles.circle} aria-hidden="true">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+          <svg className={styles.gridIcon} width="17" height="17" viewBox="0 0 24 24" fill="none">
             <rect x="4" y="4" width="7" height="7" rx="1.5" fill="currentColor" />
             <rect x="13" y="4" width="7" height="7" rx="1.5" fill="currentColor" />
             <rect x="4" y="13" width="7" height="7" rx="1.5" fill="currentColor" />

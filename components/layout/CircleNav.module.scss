@@ -1,5 +1,9 @@
 @use "../../styles/tokens" as *;
 
+// Premium editorial easing requested for this interaction.
+$ease: cubic-bezier(0.22, 1, 0.36, 1);
+$dur: 0.32s;
+
 .nav {
   position: fixed;
   top: 40vh;
@@ -7,16 +11,29 @@
   z-index: 160;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  // Subtle horizontal expansion on hover/focus (grows leftward; the circle
+  // stays anchored on the right, so nothing shifts the page or overflows).
+  transition: gap $dur $ease;
 }
 
 .label {
   @include micro;
   white-space: nowrap;
-  transition: color 0.3s var(--e-micro);
+  // Subtle by default so it does not compete with the page, but still legible.
+  opacity: 0.42;
+  transform: translateX(8px);
+  transition:
+    opacity $dur $ease,
+    transform $dur $ease,
+    color $dur $ease;
 
+  // No hover on touch — keep the label clearly legible so the button reads.
   @include mobile {
-    display: none;
+    opacity: 0.85;
+    transform: none;
   }
 }
 
@@ -28,16 +45,44 @@
   place-items: center;
   flex-shrink: 0;
   transition:
-    background-color 0.35s var(--e-micro),
-    color 0.35s var(--e-micro),
-    transform 0.4s var(--e-swap);
+    background-color $dur $ease,
+    color $dur $ease,
+    transform $dur $ease,
+    box-shadow $dur $ease;
 }
 
-.nav:hover .circle {
-  transform: scale(1.07);
+// Only the four-square grid icon rotates; the back arrow keeps its meaning.
+.gridIcon {
+  transition: transform 0.36s $ease;
 }
 
-// Dark surface behind → off-white circle with a dark glyph.
+// ---- Reveal: identical for pointer hover and keyboard focus ----
+.nav:hover,
+.nav:focus-visible {
+  gap: 15px;
+}
+
+.nav:hover .label,
+.nav:focus-visible .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav:hover .circle,
+.nav:focus-visible .circle {
+  transform: scale(1.06);
+}
+
+.nav:focus-visible .circle {
+  box-shadow: 0 0 0 3px rgba(130, 130, 128, 0.45);
+}
+
+.nav:hover .gridIcon,
+.nav:focus-visible .gridIcon {
+  transform: rotate(45deg);
+}
+
+// ---- Tone: legible on both light and dark surfaces ----
 .onDark {
   .label {
     color: var(--text-light);
@@ -48,7 +93,6 @@
   }
 }
 
-// Light surface behind → dark circle with a light glyph.
 .onLight {
   .label {
     color: #14140f;
@@ -56,5 +100,15 @@
   .circle {
     background: #14140f;
     color: #f0f0eb;
+  }
+}
+
+// Respect reduced-motion: reveal still happens, just without the tweening.
+@include reduced {
+  .nav,
+  .label,
+  .circle,
+  .gridIcon {
+    transition: none;
   }
 }
