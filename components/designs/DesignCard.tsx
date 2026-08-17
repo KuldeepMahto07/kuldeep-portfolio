@@ -61,6 +61,65 @@ export default function DesignCard({ design, index }: { design: Design; index: n
       <div className={styles.caption}>
         <h3 className={styles.title}>{design.title}</h3>
         <span className={styles.meta}>{meta}</span>
+
+        {design.description ? <p className={styles.desc}>{design.description}</p> : null}
+
+        {design.tech && design.tech.length > 0 ? (
+          <ul className={styles.tech}>
+            {design.tech.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        ) : null}
+
+        {design.href || design.github ? (
+          <div className={styles.actions}>
+            {design.href ? (
+              <a
+                className={styles.action}
+                href={design.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${design.title} — live demo (opens in a new tab)`}
+              >
+                Live Demo
+                <span className={styles.arrow} aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M4 12L12 4M12 4H5.5M12 4V10.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </a>
+            ) : null}
+            {design.github ? (
+              <a
+                className={styles.action}
+                href={design.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${design.title} — GitHub repository (opens in a new tab)`}
+              >
+                GitHub
+                <span className={styles.arrow} aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M4 12L12 4M12 4H5.5M12 4V10.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </a>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </article>
   );
